@@ -1,0 +1,207 @@
+/* ===== Global ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0 2rem; /* márgenes laterales */
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+a {
+  transition: 0.3s;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* ===== Header ===== */
+header {
+  background-color: #6c9a7d; /* sage */
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* texto centrado */
+  position: relative;
+}
+
+.logo-img {
+  height: 80px; /* tamaño razonable */
+  width: auto;
+  position: absolute; /* se mantiene a la izquierda */
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  flex-grow: 1;
+}
+
+/* ===== Navbar ===== */
+nav {
+  background-color: #c08a2e; /* medium champagne/dorado */
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  position: relative;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0 1rem;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.language-switcher {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+}
+
+.language-switcher a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ===== Container & Content ===== */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+.content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3, h4 {
+  color: #555;
+}
+
+/* ===== Calendario ===== */
+#calendar-container {
+  max-width: 600px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+#calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#calendar-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #555;
+}
+
+#calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#calendar-table th, #calendar-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+#calendar-table th {
+  background-color: #ddd;
+}
+
+#calendar-table td {
+  height: 60px;
+  vertical-align: top;
+  position: relative;
+  cursor: pointer;
+}
+
+#calendar-table td.event-day {
+  background-color: #add8e6;
+}
+
+#calendar-table td.today {
+  background-color: #f7b2b2;
+}
+
+#event-details {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* ===== Footer ===== */
+footer {
+  background-color: #6c9a7d; /* sage */
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 2px solid #c08a2e; /* línea separadora */
+  margin-top: 40px;
+}
+
+/* ===== Newsletter / Noticias ===== */
+.news-item {
+  background-color: #fff3e6; /* color tipo papel */
+  border-left: 4px solid #f7b55d; /* barra lateral tipo diario */
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.news-item h3 {
+  color: #c08a2e; /* título en dorado */
+  margin-top: 0;
+}
+
+.news-item p {
+  color: #333;
+  line-height: 1.6;
+}
+
+.news-item a {
+  color: #6c9a7d; /* sage */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.news-item a:hover {
+  text-decoration: underline;
+}
+
+.news-item strong {
+  color: #b86b2c; /* fecha o destaque */
+}
