@@ -2,7 +2,7 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0 2rem; /* márgenes laterales */
+  padding: 0 2rem;
   background-color: #f4f4f4;
   color: #333;
 }
@@ -25,21 +25,21 @@ header {
 .header-top {
   display: flex;
   align-items: center;
-  justify-content: center; /* texto centrado */
+  justify-content: center;
   position: relative;
 }
 
 .logo-img {
-  height: 80px; /* tamaño razonable */
+  height: 60px; /* tamaño uniforme para todas las páginas */
   width: auto;
-  position: absolute; /* se mantiene a la izquierda */
+  position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
 }
 
 .logo-text {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   text-align: center;
   flex-grow: 1;
@@ -47,7 +47,7 @@ header {
 
 /* ===== Navbar ===== */
 nav {
-  background-color: #c08a2e; /* medium champagne/dorado */
+  background-color: #c08a2e; /* dorado */
   padding: 0.5rem 0;
   display: flex;
   justify-content: center;
@@ -63,7 +63,8 @@ nav a {
   font-weight: bold;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
   text-decoration: underline;
 }
 
@@ -94,114 +95,88 @@ nav a:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2, h3, h4 {
+h1, h2, h3, h4 {
   color: #555;
 }
 
-/* ===== Calendario ===== */
-#calendar-container {
-  max-width: 600px;
-  margin: 20px auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  background-color: #f9f9f9;
+/* ===== Ligas - Grilla ===== */
+.leagues-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* dos columnas */
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
-#calendar-header {
+.leagues-column {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.league-header {
+  display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-#calendar-header button {
-  background: none;
-  border: none;
-  cursor: pointer;
+.league-icon {
   font-size: 1.5rem;
-  color: #555;
 }
 
-#calendar-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-#calendar-table th, #calendar-table td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-#calendar-table th {
-  background-color: #ddd;
-}
-
-#calendar-table td {
-  height: 60px;
-  vertical-align: top;
-  position: relative;
-  cursor: pointer;
-}
-
-#calendar-table td.event-day {
-  background-color: #add8e6;
-}
-
-#calendar-table td.today {
-  background-color: #f7b2b2;
-}
-
-#event-details {
-  margin-top: 20px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
-}
-
-/* ===== Footer ===== */
-footer {
-  background-color: #6c9a7d; /* sage */
-  color: #fff;
-  text-align: center;
-  padding: 1rem 0;
-  border-top: 2px solid #c08a2e; /* línea separadora */
-  margin-top: 40px;
-}
-
-/* ===== Newsletter / Noticias ===== */
-.news-item {
-  background-color: #fff3e6; /* color tipo papel */
-  border-left: 4px solid #f7b55d; /* barra lateral tipo diario */
+.league-card {
+  background-color: #fff3e6;
+  border-left: 4px solid #f7b55d;
   padding: 15px 20px;
-  margin-bottom: 20px;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-.news-item h3 {
-  color: #c08a2e; /* título en dorado */
-  margin-top: 0;
+.league-card strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #c08a2e;
 }
 
-.news-item p {
+.league-card p {
+  margin: 0;
   color: #333;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-.news-item a {
-  color: #6c9a7d; /* sage */
-  text-decoration: none;
+.league-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #6c9a7d;
   font-weight: bold;
+  text-decoration: none;
 }
 
-.news-item a:hover {
+.league-card a:hover {
   text-decoration: underline;
 }
 
-.news-item strong {
-  color: #b86b2c; /* fecha o destaque */
+/* ===== Footer ===== */
+footer {
+  background-color: #6c9a7d;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 2px solid #c08a2e;
+  margin-top: 40px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .leagues-grid {
+    grid-template-columns: 1fr; /* una columna en pantallas chicas */
+  }
+
+  .logo-img {
+    height: 50px; /* ajusta el logo en móvil */
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
 }
