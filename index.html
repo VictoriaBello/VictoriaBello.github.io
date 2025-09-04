@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IGP News Argentina 1</title>
+    <title>IGP News Argentina</title>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
@@ -28,84 +28,45 @@
         </nav>
     </header>
 
-    <!-- HERO -->
-    <section id="hero">
-        <div class="hero-content">
+    <!-- CONTENIDO PRINCIPAL EN RECUADRO -->
+    <div class="container">
+
+        <!-- INTRO / BIENVENIDA -->
+        <section id="intro">
             <h1>IGP News Argentina</h1>
-            <p>Todo sobre el deporte canino IGP: noticias, eventos y más.</p>
-            <a href="events.html" class="btn-cta">Ver próximos eventos</a>
-        </div>
-    </section>
+            <p>Todo sobre el deporte canino IGP: noticias, eventos, ligas y más.</p>
+        </section>
 
-    <!-- ÚLTIMAS NOTICIAS -->
-    <section id="latest-news">
-        <h2>Últimas Noticias</h2>
-        <div class="news-items">
-            <article class="news-item">
-                <img src="images/noticia1.jpg" alt="Noticia 1">
-                <h3>Título Noticia 1</h3>
-                <p>Resumen breve de la noticia...</p>
-                <a href="news-detail.html" class="btn-cta">Leer más</a>
-            </article>
-            <article class="news-item">
-                <img src="images/noticia2.jpg" alt="Noticia 2">
-                <h3>Título Noticia 2</h3>
-                <p>Resumen breve de la noticia...</p>
-                <a href="news-detail.html" class="btn-cta">Leer más</a>
-            </article>
-        </div>
-    </section>
-
-    <!-- PRÓXIMOS EVENTOS -->
-    <section id="upcoming-events">
-        <h2>Próximos Eventos</h2>
-        <div id="calendar-container"></div>
-        <ul>
-            <li>15-21 sep 2025 - Campeonato Mundial FCI/IGP - Vitoria-Gasteiz, España</li>
-            <li>28 sep 2025 - POA Regional - General Roca, Argentina</li>
-        </ul>
-        <a href="events.html" class="btn-cta">Ver calendario completo</a>
-    </section>
-
-    <!-- ENLACES RÁPIDOS -->
-    <section id="quick-links">
-        <h2>Enlaces Rápidos</h2>
-        <div class="quick-cards">
-            <a href="about.html" class="card">¿Qué es IGP?</a>
-            <a href="leagues.html" class="card">Ligas</a>
-            <a href="resources.html" class="card">Recursos</a>
-            <a href="profiles.html" class="card">Perfiles Destacados</a>
-        </div>
-    </section>
-
-    <!-- NOTICIAS / CONSEJOS RELACIONADOS -->
-    <section id="related-news">
-        <h2>Noticias / Consejos Relacionados</h2>
-        <ul>
-            <li>Cambio de reglamento: nuevas normas en 2026</li>
-            <li>Prohibición de collares electrónicos en competiciones</li>
-        </ul>
-        <a href="news.html" class="btn-cta">Ver todas las noticias</a>
-    </section>
-
-    <!-- PERFILES DESTACADOS -->
-    <section id="featured-profiles">
-        <h2>Perfiles Destacados</h2>
-        <div class="profiles">
-            <div class="profile-card">
-                <img src="images/competidor1.jpg" alt="Competidor 1">
-                <h3>Nombre Competidor 1</h3>
-                <p>Mini-biografía...</p>
-                <a href="profile-detail.html" class="btn-cta">Ver perfil</a>
+        <!-- ÚLTIMAS NOTICIAS -->
+        <section id="latest-news">
+            <h2>Últimas Noticias</h2>
+            <div class="news-items" id="news-container">
+                <!-- Noticias se cargarán dinámicamente aquí -->
             </div>
-            <div class="profile-card">
-                <img src="images/competidor2.jpg" alt="Competidor 2">
-                <h3>Nombre Competidor 2</h3>
-                <p>Mini-biografía...</p>
-                <a href="profile-detail.html" class="btn-cta">Ver perfil</a>
+        </section>
+
+        <!-- PRÓXIMOS EVENTOS -->
+        <section id="upcoming-events">
+            <h2>Próximos Eventos</h2>
+            <ul>
+                <li>15-21 sep 2025 - Campeonato Mundial FCI/IGP - Vitoria-Gasteiz, España</li>
+                <li>28 sep 2025 - POA Regional - General Roca, Argentina</li>
+            </ul>
+            <a href="events.html" class="btn-cta">Ver calendario completo</a>
+        </section>
+
+        <!-- ENLACES RÁPIDOS -->
+        <section id="quick-links">
+            <h2>Enlaces Rápidos</h2>
+            <div class="quick-cards">
+                <a href="about.html" class="card">¿Qué es IGP?</a>
+                <a href="leagues.html" class="card">Ligas</a>
+                <a href="resources.html" class="card">Recursos</a>
+                <a href="profiles.html" class="card">Perfiles Destacados</a>
             </div>
-        </div>
-    </section>
+        </section>
+
+    </div> <!-- FIN CONTAINER -->
 
     <!-- FOOTER -->
     <footer>
@@ -113,8 +74,27 @@
         <p>© 2025 IGP News</p>
     </footer>
 
-    <!-- SCRIPTS -->
-    <script src="js/calendar.js"></script>
+    <!-- SCRIPT PARA CARGAR NOTICIAS -->
+    <script>
+        async function loadNews() {
+            try {
+                const response = await fetch('news.html');
+                const text = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const newsItems = doc.querySelectorAll('.news-item');
+
+                const container = document.getElementById('news-container');
+                newsItems.forEach(item => {
+                    container.appendChild(item.cloneNode(true));
+                });
+            } catch (error) {
+                console.error('Error al cargar noticias:', error);
+            }
+        }
+
+        loadNews();
+    </script>
 
 </body>
 </html>
