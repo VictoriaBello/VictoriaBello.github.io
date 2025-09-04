@@ -11,10 +11,9 @@
     <!-- HEADER / NAV -->
     <header>
         <div class="header-top">
-            <img src="images/logo.png" alt="IGP News Logo" class="logo-img">
-            <div class="logo-text">IGP News - Global</div>
+            <img class="logo-img" src="images/logo.png" alt="IGP News Logo">
+            <div class="logo-text">IGP News - Argentina</div>
         </div>
-
         <nav>
             <a href="index-en.html">Home</a>
             <a href="about-en.html">What is IGP?</a>
@@ -29,94 +28,81 @@
         </nav>
     </header>
 
-
     <!-- HERO -->
     <section id="hero">
-        <div class="hero-content">
+        <div class="hero-content container">
             <h1>IGP News Argentina</h1>
             <p>All about the IGP canine sport: news, events, and more.</p>
-            <a href="events-en.html" class="btn-cta">See upcoming events</a>
         </div>
     </section>
 
     <!-- LATEST NEWS -->
     <section id="latest-news">
-        <h2>Latest News</h2>
-        <div class="news-items">
-            <article class="news-item">
-                <img src="images/noticia1.jpg" alt="News 1">
-                <h3>News Title 1</h3>
-                <p>Brief summary of the news...</p>
-                <a href="news-detail-en.html" class="btn-cta">Read more</a>
-            </article>
-            <article class="news-item">
-                <img src="images/noticia2.jpg" alt="News 2">
-                <h3>News Title 2</h3>
-                <p>Brief summary of the news...</p>
-                <a href="news-detail-en.html" class="btn-cta">Read more</a>
-            </article>
+        <div class="container">
+            <h2>Latest News</h2>
+            <div class="news-items" id="news-container">
+                <!-- News will be loaded from news-en.html -->
+            </div>
         </div>
     </section>
 
     <!-- UPCOMING EVENTS -->
     <section id="upcoming-events">
-        <h2>Upcoming Events</h2>
-        <div id="calendar-container"></div>
-        <ul>
-            <li>Sep 15-21, 2025 - FCI/IGP World Championship - Vitoria-Gasteiz, Spain</li>
-            <li>Sep 28, 2025 - POA Regional - General Roca, Argentina</li>
-        </ul>
-        <a href="events-en.html" class="btn-cta">See full calendar</a>
-    </section>
+        <div class="container">
+            <h2>Upcoming Events</h2>
 
-    <!-- QUICK LINKS -->
-    <section id="quick-links">
-        <h2>Quick Links</h2>
-        <div class="quick-cards">
-            <a href="about-en.html" class="card">What is IGP?</a>
-            <a href="leagues-en.html" class="card">Leagues</a>
-            <a href="resources-en.html" class="card">Resources</a>
-            <a href="profiles-en.html" class="card">Featured Profiles</a>
-        </div>
-    </section>
+            <!-- Calendar -->
+            <div id="calendar-container"></div>
 
-    <!-- RELATED NEWS / TIPS -->
-    <section id="related-news">
-        <h2>Related News / Tips</h2>
-        <ul>
-            <li>Rule change: new norms in 2026</li>
-            <li>Ban of electronic collars in competitions</li>
-        </ul>
-        <a href="news-en.html" class="btn-cta">See all news</a>
-    </section>
+            <!-- Dynamic Events -->
+            <div id="events-container"></div>
 
-    <!-- FEATURED PROFILES -->
-    <section id="featured-profiles">
-        <h2>Featured Profiles</h2>
-        <div class="profiles">
-            <div class="profile-card">
-                <img src="images/competidor1.jpg" alt="Competitor 1">
-                <h3>Competitor 1 Name</h3>
-                <p>Mini-biography...</p>
-                <a href="profile-detail-en.html" class="btn-cta">View profile</a>
-            </div>
-            <div class="profile-card">
-                <img src="images/competidor2.jpg" alt="Competitor 2">
-                <h3>Competitor 2 Name</h3>
-                <p>Mini-biography...</p>
-                <a href="profile-detail-en.html" class="btn-cta">View profile</a>
-            </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <p>Contact | Social Media | Suggestions | ES/EN</p>
-        <p>© 2025 IGP News</p>
+        <div class="container">
+            <p>Contact | Social Media | Suggestions | ES/EN</p>
+            <p>© 2025 IGP News</p>
+        </div>
     </footer>
 
     <!-- SCRIPTS -->
-    <script src="js/calendar-en.js"></script>
+    <script src="js/calendar.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        // ====================== News ======================
+        const newsContainer = document.getElementById('news-container');
+        try {
+            const res = await fetch('news-en.html');
+            const text = await res.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
+            const newsItems = doc.querySelectorAll('.news-item');
+            newsItems.forEach((item, index) => {
+                if(index < 2) newsContainer.appendChild(item.cloneNode(true));
+            });
+        } catch (err) {
+            console.error('Error loading news:', err);
+        }
+
+        // ====================== Events ======================
+        const eventsContainer = document.getElementById('events-container');
+        try {
+            const res = await fetch('events-en.html');
+            const text = await res.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
+            const eventItems = doc.querySelectorAll('.event-card');
+            eventItems.forEach((item, index) => {
+                if(index < 2) eventsContainer.appendChild(item.cloneNode(true));
+            });
+        } catch (err) {
+            console.error('Error loading events:', err);
+        }
+    });
+    </script>
 
 </body>
 </html>
