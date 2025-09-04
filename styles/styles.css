@@ -285,6 +285,79 @@ h1, h2, h3, h4 {
   color: #c08a2e;
 }
 
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .leagues-grid {
+    grid-template-columns: 1fr; /* una columna en pantallas chicas */
+  }
+
+  .logo-img {
+    height: 50px;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===== Profiles ===== */
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.profile-card {
+  background-color: #fffdf9;
+  border: 1px solid #e0d6c8;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.profile-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.profile-card h3 {
+  margin: 0.5rem 0 0.3rem;
+  font-size: 1.2rem;
+  color: #444;
+}
+
+.profile-card p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.profile-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #c08a2e;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.profile-card a:hover {
+  background-color: #6c9a7d;
+}
 
 /* ===== Footer ===== */
 footer {
