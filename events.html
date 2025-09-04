@@ -27,50 +27,74 @@
         </nav>
     </header>
 
+    <div class="container">
+        <div class="content">
+            <h2>Próximos eventos de IGP</h2>
+            <p>Mantente al día con los eventos más importantes del deporte IGP.</p>
 
-<div class="container">
-    <div class="content">
-        <h2>Próximos eventos de IGP</h2>
-        <p>Mantente al día con los eventos más importantes del deporte IGP.</p>
+            <div id="calendar-container"></div>
 
-        <div id="calendar-container"></div>
+            <hr>
 
-        <hr>
+            <h3>Detalles de los eventos</h3>
 
-        <h3>Detalles de los eventos</h3>
-        <ul>
-            <li>
-                <strong>Campeonato Mundial FCI/IGP 2025</strong>
-                <ul>
-                    <li><strong>Fecha:</strong> Del 15 al 21 de septiembre de 2025</li>
-                    <li><strong>Lugar:</strong> Vitoria-Gasteiz, España</li>
-                </ul>
-            </li>
-            <li>
-                <strong>POA - Eventos Regionales</strong>
-                <ul>
-                    <li><strong>Fecha:</strong> 28 de septiembre de 2025</li>
-                    <li><strong>Lugar:</strong> General Roca, Río Negro, Argentina</li>
-                </ul>
-            </li>
-            <li>
-                <strong>RSV Global Latinoamérica - Aniversario</strong>
-                <ul>
-                    <li><strong>Fecha:</strong> 28 y 29 de septiembre de 2025</li>
-                    <li><strong>Lugar:</strong> Rosario, Santa Fe, Argentina</li>
-                </ul>
-            </li>
-            <li>
-                <strong>Campeonato Mundial RSV2000 2025</strong>
-                <ul>
-                    <li><strong>Fecha:</strong> Del 3 al 5 de octubre de 2025</li>
-                    <li><strong>Lugar:</strong> Korbach, Alemania</li>
-                </ul>
-            </li>
-        </ul>
+            <!-- NUEVO LAYOUT: tarjetas limpias con icono a la derecha del título -->
+            <div class="event-list">
+
+                <!-- Internacional -->
+                <div class="event-card international">
+                    <div class="event-header">
+                        <h4 class="event-title">Campeonato Mundial FCI/IGP 2025</h4>
+                        <span class="event-icon">🌍</span>
+                    </div>
+                    <div class="event-details">
+                        <p><strong>Fecha:</strong> Del 15 al 21 de septiembre de 2025</p>
+                        <p><strong>Lugar:</strong> Vitoria-Gasteiz, España</p>
+                    </div>
+                </div>
+
+                <!-- Nacional -->
+                <div class="event-card national">
+                    <div class="event-header">
+                        <h4 class="event-title">POA - Eventos Regionales</h4>
+                        <span class="event-icon">🇦🇷</span>
+                    </div>
+                    <div class="event-details">
+                        <p><strong>Fecha:</strong> 28 y 29 de septiembre de 2025</p>
+                        <p><strong>Lugar:</strong> General Roca, Río Negro, Argentina</p>
+                    </div>
+                </div>
+
+                <!-- Nacional -->
+                <div class="event-card national">
+                    <div class="event-header">
+                        <h4 class="event-title">RSV Global Latinoamérica - Aniversario</h4>
+                        <span class="event-icon">🇦🇷</span>
+                    </div>
+                    <div class="event-details">
+                        <p><strong>Fecha:</strong> 28 y 29 de septiembre de 2025</p>
+                        <p><strong>Lugar:</strong> Rosario, Santa Fe, Argentina</p>
+                    </div>
+                </div>
+
+                <!-- Internacional -->
+                <div class="event-card international">
+                    <div class="event-header">
+                        <h4 class="event-title">Campeonato Mundial RSV2000 2025</h4>
+                        <span class="event-icon">🌍</span>
+                    </div>
+                    <div class="event-details">
+                        <p><strong>Fecha:</strong> Del 3 al 5 de octubre de 2025</p>
+                        <p><strong>Lugar:</strong> Korbach, Alemania</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /event-list -->
+
+        </div>
     </div>
-</div>
 
-<script src="js/calendar.js"></script>
+    <script src="js/calendar.js"></script>
 </body>
 </html>

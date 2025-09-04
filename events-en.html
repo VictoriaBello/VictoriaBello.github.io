@@ -10,12 +10,11 @@
 
     <header>
         <div class="header-top">
-            <img src="images/logo.png" alt="IGP News Logo" class="logo-img">
-            <div class="logo-text">IGP News - Global</div>
+            <img class="logo-img" src="images/logo.png" alt="IGP News Logo">
+            <div class="logo-text">IGP News - Argentina</div>
         </div>
-
         <nav>
-            <a href="index-en.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="about-en.html">What is IGP?</a>
             <a href="leagues-en.html">Leagues</a>
             <a href="events-en.html">Events</a>
@@ -28,50 +27,74 @@
         </nav>
     </header>
 
+    <div class="container">
+        <div class="content">
+            <h2>Upcoming IGP Events</h2>
+            <p>Stay up to date with the most important IGP sport events.</p>
 
-<div class="container">
-    <div class="content">
-        <h2>Upcoming IGP Events</h2>
-        <p>Stay up to date with the most important events in IGP sport.</p>
+            <div id="calendar-container"></div>
 
-        <div id="calendar-container"></div>
+            <hr>
 
-        <hr>
+            <h3>Event Details</h3>
 
-        <h3>Competition Events</h3>
-        <ul>
-            <li>
-                <strong>FCI/IGP World Championship 2025</strong>
-                <ul>
-                    <li><strong>Date:</strong> September 15–21, 2025</li>
-                    <li><strong>Location:</strong> Vitoria-Gasteiz, Spain</li>
-                </ul>
-            </li>
-            <li>
-                <strong>POA - Regional Events</strong>
-                <ul>
-                    <li><strong>Date:</strong> September 28, 2025</li>
-                    <li><strong>Location:</strong> General Roca, Río Negro, Argentina</li>
-                </ul>
-            </li>
-            <li>
-                <strong>RSV Global Latin America - Anniversary</strong>
-                <ul>
-                    <li><strong>Date:</strong> September 28–29, 2025</li>
-                    <li><strong>Location:</strong> Rosario, Santa Fe, Argentina</li>
-                </ul>
-            </li>
-            <li>
-                <strong>RSV2000 World Championship 2025</strong>
-                <ul>
-                    <li><strong>Date:</strong> October 3–5, 2025</li>
-                    <li><strong>Location:</strong> Korbach, Germany</li>
-                </ul>
-            </li>
-        </ul>
+            <!-- Event cards with icon to the right of the title -->
+            <div class="event-list">
+
+                <!-- International -->
+                <div class="event-card international">
+                    <div class="event-header">
+                        <h4 class="event-title">FCI/IGP World Championship 2025</h4>
+                        <span class="event-icon">🌍</span>
+                    </div>
+                    <div class="event-details">
+                        <p><strong>Date:</strong> September 15–21, 2025</p>
+                        <p><strong>Location:</strong> Vitoria-Gasteiz, Spain</p>
+                    </div>
+                </div>
+
+                <!-- National -->
+                <div class="event-card national">
+                    <div class="event-header">
+                        <h4 class="event-title">POA - Regional Events</h4>
+                        <span class="event-icon">🇦🇷</span>
+                    </div>
+                    <div class="event-details">
+                        <p><strong>Date:</strong> September 28–29, 2025</p>
+                        <p><strong>Location:</strong> General Roca, Río Negro, Argentina</p>
+                    </div>
+                </div>
+
+                <!-- National -->
+                <div class="event-card national">
+                    <div class="event-header">
+                        <h4 class="event-title">RSV Global Latin America - Anniversary</h4>
+                        <span class="event-icon">🇦🇷</span>
+                    </div>
+                    <div class="event-details">
+                        <p><strong>Date:</strong> September 28–29, 2025</p>
+                        <p><strong>Location:</strong> Rosario, Santa Fe, Argentina</p>
+                    </div>
+                </div>
+
+                <!-- International -->
+                <div class="event-card international">
+                    <div class="event-header">
+                        <h4 class="event-title">RSV2000 World Championship 2025</h4>
+                        <span class="event-icon">🌍</span>
+                    </div>
+                    <div class="event-details">
+                        <p><strong>Date:</strong> October 3–5, 2025</p>
+                        <p><strong>Location:</strong> Korbach, Germany</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /event-list -->
+
+        </div>
     </div>
-</div>
 
-<script src="js/calendar-en.js"></script>
+    <script src="js/calendar-en.js"></script>
 </body>
 </html>
