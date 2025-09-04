@@ -1,29 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Define events
+    // Events with ranges and lighter colors
     const events = [
         {
-            date: '2025-09-15',
+            startDate: '2025-09-15',
+            endDate: '2025-09-21',
             title: 'FCI/IGP World Championship',
-            type: 'competition',
-            color: '#FFD580' // pastel yellow
+            type: 'International',
+            color: '#FFDEB4' // light brown
         },
         {
-            date: '2025-09-28',
+            startDate: '2025-09-28',
+            endDate: '2025-09-29',
             title: 'POA - Regional Events',
-            type: 'competition',
-            color: '#FFD580'
+            type: 'National',
+            color: '#A8D5BA' // light green
         },
         {
-            date: '2025-09-28',
+            startDate: '2025-09-28',
+            endDate: '2025-09-29',
             title: 'RSV Global Latin America - Anniversary',
-            type: 'competition',
-            color: '#FFD580'
+            type: 'National',
+            color: '#C1E1C1' // softer green
         },
         {
-            date: '2025-10-03',
+            startDate: '2025-10-03',
+            endDate: '2025-10-05',
             title: 'RSV2000 World Championship',
-            type: 'competition',
-            color: '#FFD580'
+            type: 'International',
+            color: '#F5CBA7' // soft brown
         }
     ];
 
@@ -36,20 +40,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderCalendar() {
         calendarContainer.innerHTML = '';
+        calendarContainer.style.display = 'flex';
+        calendarContainer.style.flexDirection = 'column';
+        calendarContainer.style.alignItems = 'center';
+        calendarContainer.style.marginTop = '40px';
 
-        // Header
+        // Calendar header
         const header = document.createElement('div');
         header.id = 'calendar-header';
+        header.style.width = '600px';
+        header.style.display = 'flex';
+        header.style.justifyContent = 'space-between';
+        header.style.alignItems = 'center';
+        header.style.margin = '0 0 10px';
         header.innerHTML = `
             <button id="prev-month">&lt;</button>
-            <h2>${monthNames[currentMonth]} ${currentYear}</h2>
+            <h2 style="margin:0;">${monthNames[currentMonth]} ${currentYear}</h2>
             <button id="next-month">&gt;</button>
         `;
         calendarContainer.appendChild(header);
 
-        // Table
+        // Calendar table
         const table = document.createElement('table');
         table.id = 'calendar-table';
+        table.style.width = '600px';
+        table.style.borderCollapse = 'collapse';
+        table.style.textAlign = 'center';
 
         const daysOfWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
         const thead = document.createElement('thead');
@@ -57,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
         daysOfWeek.forEach(day => {
             const th = document.createElement('th');
             th.textContent = day;
+            th.style.padding = '5px';
+            th.style.borderBottom = '1px solid #ccc';
             headerRow.appendChild(th);
         });
         thead.appendChild(headerRow);
@@ -68,33 +86,42 @@ document.addEventListener('DOMContentLoaded', () => {
         let monthLength = new Date(currentYear, currentMonth + 1, 0).getDate();
 
         let date = 1;
-        for (let i = 0; i < 6; i++) {
+        for(let i=0;i<6;i++){
             const weekRow = document.createElement('tr');
-            for (let j = 0; j < 7; j++) {
+            for(let j=0;j<7;j++){
                 const cell = document.createElement('td');
-                if (i === 0 && j < startingDay) {
+                cell.style.padding = '8px';
+                cell.style.height = '40px';
+                cell.style.border = '1px solid #eee';
+                if(i===0 && j<startingDay){
                     cell.textContent = '';
-                } else if (date > monthLength) {
+                } else if(date>monthLength){
                     cell.textContent = '';
                 } else {
-                    const cellDate = new Date(currentYear, currentMonth, date);
-                    const dateString = `${cellDate.getFullYear()}-${(cellDate.getMonth()+1).toString().padStart(2,'0')}-${cellDate.getDate().toString().padStart(2,'0')}`;
+                    const cellDate = new Date(currentYear,currentMonth,date);
                     cell.textContent = date;
 
-                    // Check if there's an event on this day
-                    events.forEach(event => {
-                        if (event.date === dateString) {
+                    // Check events
+                    events.forEach(event=>{
+                        const eventStart = new Date(event.startDate);
+                        const eventEnd = new Date(event.endDate);
+                        eventEnd.setDate(eventEnd.getDate() + 1);
+
+                        if(cellDate >= eventStart && cellDate < eventEnd){
                             cell.style.backgroundColor = event.color;
-                            cell.setAttribute('title', `${event.title} (${event.type})`);
+                            cell.dataset.title = event.title;
+                            cell.dataset.type = event.type;
+                            cell.dataset.start = event.startDate;
+                            cell.dataset.end = event.endDate;
                         }
                     });
 
                     // Today
                     const today = new Date();
-                    if (cellDate.getFullYear() === today.getFullYear() &&
-                        cellDate.getMonth() === today.getMonth() &&
-                        cellDate.getDate() === today.getDate()) {
-                        cell.classList.add('today');
+                    if(cellDate.getFullYear()===today.getFullYear() &&
+                       cellDate.getMonth()===today.getMonth() &&
+                       cellDate.getDate()===today.getDate()){
+                        cell.style.border = '2px solid #333';
                     }
 
                     date++;
@@ -106,152 +133,52 @@ document.addEventListener('DOMContentLoaded', () => {
         table.appendChild(tbody);
         calendarContainer.appendChild(table);
 
-        // Month navigation
-        document.getElementById('prev-month').addEventListener('click', () => {
-            currentMonth--;
-            if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
-            }
-            renderCalendar();
-        });
-
-        document.getElementById('next-month').addEventListener('click', () => {
-            currentMonth++;
-            if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-            }
-            renderCalendar();
-        });
-    }
-
-    renderCalendar();
-});
-document.addEventListener('DOMContentLoaded', () => {
-    // Define events
-    const events = [
-        {
-            date: '2025-09-15',
-            title: 'FCI/IGP World Championship',
-            type: 'competition',
-            color: '#FFD580' // pastel yellow
-        },
-        {
-            date: '2025-09-28',
-            title: 'POA - Regional Events',
-            type: 'competition',
-            color: '#FFD580'
-        },
-        {
-            date: '2025-09-28',
-            title: 'RSV Global Latin America - Anniversary',
-            type: 'competition',
-            color: '#FFD580'
-        },
-        {
-            date: '2025-10-03',
-            title: 'RSV2000 World Championship',
-            type: 'competition',
-            color: '#FFD580'
+        // Tooltip
+        let tooltip = document.getElementById('calendar-tooltip');
+        if(!tooltip){
+            tooltip = document.createElement('div');
+            tooltip.id = 'calendar-tooltip';
+            tooltip.style.position = 'absolute';
+            tooltip.style.padding = '6px 10px';
+            tooltip.style.background = 'rgba(0,0,0,0.75)';
+            tooltip.style.color = '#fff';
+            tooltip.style.borderRadius = '4px';
+            tooltip.style.fontSize = '0.9rem';
+            tooltip.style.pointerEvents = 'none';
+            tooltip.style.display = 'none';
+            tooltip.style.zIndex = 1000;
+            document.body.appendChild(tooltip);
         }
-    ];
 
-    const calendarContainer = document.getElementById('calendar-container');
-    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-    let currentDate = new Date();
-    let currentYear = currentDate.getFullYear();
-    let currentMonth = currentDate.getMonth();
-
-    function renderCalendar() {
-        calendarContainer.innerHTML = '';
-
-        // Header
-        const header = document.createElement('div');
-        header.id = 'calendar-header';
-        header.innerHTML = `
-            <button id="prev-month">&lt;</button>
-            <h2>${monthNames[currentMonth]} ${currentYear}</h2>
-            <button id="next-month">&gt;</button>
-        `;
-        calendarContainer.appendChild(header);
-
-        // Table
-        const table = document.createElement('table');
-        table.id = 'calendar-table';
-
-        const daysOfWeek = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        const thead = document.createElement('thead');
-        const headerRow = document.createElement('tr');
-        daysOfWeek.forEach(day => {
-            const th = document.createElement('th');
-            th.textContent = day;
-            headerRow.appendChild(th);
-        });
-        thead.appendChild(headerRow);
-        table.appendChild(thead);
-
-        const tbody = document.createElement('tbody');
-        let firstDay = new Date(currentYear, currentMonth, 1);
-        let startingDay = firstDay.getDay();
-        let monthLength = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-        let date = 1;
-        for (let i = 0; i < 6; i++) {
-            const weekRow = document.createElement('tr');
-            for (let j = 0; j < 7; j++) {
-                const cell = document.createElement('td');
-                if (i === 0 && j < startingDay) {
-                    cell.textContent = '';
-                } else if (date > monthLength) {
-                    cell.textContent = '';
-                } else {
-                    const cellDate = new Date(currentYear, currentMonth, date);
-                    const dateString = `${cellDate.getFullYear()}-${(cellDate.getMonth()+1).toString().padStart(2,'0')}-${cellDate.getDate().toString().padStart(2,'0')}`;
-                    cell.textContent = date;
-
-                    // Check if there's an event on this day
-                    events.forEach(event => {
-                        if (event.date === dateString) {
-                            cell.style.backgroundColor = event.color;
-                            cell.setAttribute('title', `${event.title} (${event.type})`);
-                        }
-                    });
-
-                    // Today
-                    const today = new Date();
-                    if (cellDate.getFullYear() === today.getFullYear() &&
-                        cellDate.getMonth() === today.getMonth() &&
-                        cellDate.getDate() === today.getDate()) {
-                        cell.classList.add('today');
-                    }
-
-                    date++;
-                }
-                weekRow.appendChild(cell);
+        // Hover
+        const cells = table.querySelectorAll('td');
+        cells.forEach(cell=>{
+            if(cell.dataset.title){
+                cell.addEventListener('mouseover',(e)=>{
+                    tooltip.innerHTML = `<strong>${cell.dataset.title}</strong><br>Type: ${cell.dataset.type}<br>${cell.dataset.start} → ${cell.dataset.end}`;
+                    tooltip.style.display='block';
+                    tooltip.style.left = e.pageX + 10 + 'px';
+                    tooltip.style.top = e.pageY + 10 + 'px';
+                });
+                cell.addEventListener('mousemove',(e)=>{
+                    tooltip.style.left = e.pageX + 10 + 'px';
+                    tooltip.style.top = e.pageY + 10 + 'px';
+                });
+                cell.addEventListener('mouseout',()=>{
+                    tooltip.style.display='none';
+                });
             }
-            tbody.appendChild(weekRow);
-        }
-        table.appendChild(tbody);
-        calendarContainer.appendChild(table);
+        });
 
         // Month navigation
-        document.getElementById('prev-month').addEventListener('click', () => {
+        document.getElementById('prev-month').addEventListener('click',()=>{
             currentMonth--;
-            if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
-            }
+            if(currentMonth<0){ currentMonth=11; currentYear--; }
             renderCalendar();
         });
-
-        document.getElementById('next-month').addEventListener('click', () => {
+        document.getElementById('next-month').addEventListener('click',()=>{
             currentMonth++;
-            if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-            }
+            if(currentMonth>11){ currentMonth=0; currentYear++; }
             renderCalendar();
         });
     }
