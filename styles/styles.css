@@ -17,7 +17,7 @@ a:hover {
 
 /* ===== Header ===== */
 header {
-  background-color: #6c9a7d; /* sage */
+  background-color: #6c9a7d; /* verde salvia */
   color: #fff;
   padding: 1rem 2rem;
 }
@@ -30,7 +30,7 @@ header {
 }
 
 .logo-img {
-  height: 60px; /* tamaño uniforme para todas las páginas */
+  height: 60px;
   width: auto;
   position: absolute;
   left: 0;
@@ -156,6 +156,72 @@ h1, h2, h3, h4 {
   text-decoration: underline;
 }
 
+/* ===== Noticias ===== */
+.news-item {
+  background-color: #fffdf9; /* beige muy suave */
+  border: 1px solid #e0d6c8;
+  border-left: 6px solid #c08a2e; /* dorado */
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.news-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.news-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  color: #6c6c6c;
+}
+
+.news-category {
+  font-weight: bold;
+  color: #6c9a7d; /* verde salvia */
+  background-color: #eef4f0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.news-date {
+  font-style: italic;
+  color: #888;
+}
+
+.news-item h3 {
+  margin: 0.5rem 0 1rem;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  color: #444;
+}
+
+.news-item p {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.news-source {
+  font-size: 0.9rem;
+  color: #6c9a7d;
+}
+
+.news-source a {
+  color: #6c9a7d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.news-source a:hover {
+  text-decoration: underline;
+}
+
 /* ===== Footer ===== */
 footer {
   background-color: #6c9a7d;
@@ -173,7 +239,7 @@ footer {
   }
 
   .logo-img {
-    height: 50px; /* ajusta el logo en móvil */
+    height: 50px;
   }
 
   .logo-text {
