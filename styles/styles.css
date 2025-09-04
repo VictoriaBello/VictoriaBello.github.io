@@ -15,6 +15,10 @@ a:hover {
   opacity: 0.8;
 }
 
+h1, h2, h3, h4 {
+  color: #555;
+}
+
 /* ===== Header ===== */
 header {
   background-color: #6c9a7d; /* verde salvia */
@@ -93,10 +97,6 @@ nav a.active {
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2, h3, h4 {
-  color: #555;
 }
 
 /* ===== Ligas - Grilla ===== */
@@ -285,21 +285,6 @@ h1, h2, h3, h4 {
   color: #c08a2e;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .leagues-grid {
-    grid-template-columns: 1fr; /* una columna en pantallas chicas */
-  }
-
-  .logo-img {
-    height: 50px;
-  }
-
-  .logo-text {
-    font-size: 1.5rem;
-  }
-}
-
 /* ===== Profiles ===== */
 .profiles-grid {
   display: grid;
@@ -371,8 +356,8 @@ footer {
 
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
-  .leagues-grid {
-    grid-template-columns: 1fr; /* una columna en pantallas chicas */
+  body {
+    padding: 0 1rem;
   }
 
   .logo-img {
@@ -381,5 +366,63 @@ footer {
 
   .logo-text {
     font-size: 1.5rem;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .language-switcher {
+    position: static;
+    margin-top: 0.5rem;
+  }
+
+  .leagues-grid {
+    grid-template-columns: 1fr; /* una columna en pantallas chicas */
+  }
+
+  .profiles-grid {
+    grid-template-columns: 1fr; /* una sola columna */
+  }
+
+  .profile-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .news-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .event-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .logo-text {
+    font-size: 1.2rem;
+  }
+
+  nav a {
+    padding: 0.5rem 0;
+  }
+
+  .profile-card img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-card h3 {
+    font-size: 1rem;
+  }
+
+  .profile-card p {
+    font-size: 0.85rem;
   }
 }
