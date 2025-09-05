@@ -221,7 +221,6 @@ h1, h2, h3, h4 {
 .news-source a:hover {
   text-decoration: underline;
 }
-
 /* ===== Eventos ===== */
 .event-list {
   display: flex;
@@ -283,21 +282,6 @@ h1, h2, h3, h4 {
 .event-card.national h4,
 .event-card.national .event-details strong {
   color: #c08a2e;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .leagues-grid {
-    grid-template-columns: 1fr; /* una columna en pantallas chicas */
-  }
-
-  .logo-img {
-    height: 50px;
-  }
-
-  .logo-text {
-    font-size: 1.5rem;
-  }
 }
 
 /* ===== Profiles ===== */
@@ -369,7 +353,7 @@ footer {
   margin-top: 40px;
 }
 
-/* ===== Responsive ===== */
+/* ===== Responsive General ===== */
 @media (max-width: 900px) {
   .leagues-grid {
     grid-template-columns: 1fr; /* una columna en pantallas chicas */
@@ -381,5 +365,248 @@ footer {
 
   .logo-text {
     font-size: 1.5rem;
+  }
+}
+
+/* ===== Responsive Tablet (601px a 900px) ===== */
+@media (min-width: 601px) and (max-width: 900px) {
+  nav {
+    padding: 0.4rem 0;
+  }
+
+  nav a {
+    padding: 0 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .logo-img {
+    height: 65px;
+    position: static;
+    transform: none;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .profile-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .calendar-container {
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
+}
+
+/* ===== Responsive Mobile (≤600px) ===== */
+@media (max-width: 600px) {
+  /* Header: logo arriba, luego navbar */
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Logo más grande y centrado */
+  .logo-img {
+    height: 70px;
+    margin: 0 auto;
+    display: block;
+    position: static;
+    transform: none;
+  }
+
+  /* Nombre de la página debajo del logo */
+  .logo-text {
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* Navbar en columna, un enlace por línea */
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.3rem 0;
+  }
+
+  nav a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 0.6rem 0;
+    margin-bottom: 0.3rem;
+  }
+
+  /* Idioma en la misma línea (más chico que nav) */
+  .language-switcher {
+    position: static;
+    margin: 0.5rem auto 0 auto;
+    display: inline-flex;
+    gap: 0.5rem;
+  }
+  .language-switcher a {
+    color: #fff; /* blanco */
+  }
+
+  /* Foto de perfil más chica */
+  .profile-card img {
+    width: 90px;
+    height: 90px;
+  }
+
+  /* Botones de perfiles más grandes y cómodos */
+  .profile-card a {
+    display: block;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.8rem 0;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  /* ===== Calendario: solo cambios para achicar espacio debajo ===== */
+  .calendar-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto;
+    margin: 0 auto 10px; /* margen inferior reducido */
+    height: auto;        /* evita que el contenedor reserve espacio extra */
+  }
+
+  .calendar-container table {
+    width: 100%;         /* tabla ocupa todo el contenedor */
+    font-size: 0.8rem;   /* reduce el tamaño del contenido */
+  }
+
+  .calendar-container th,
+  .calendar-container td {
+    padding: 4px 6px;    /* achica celdas para que todo quede más compacto */
+  }
+
+  .calendar-container thead th {
+    font-size: 0.85rem;  /* encabezados más pequeños */
+  }
+}
+/* ===== Responsive Mobile (≤600px) ===== */
+@media (max-width: 600px) {
+  /* Header: logo arriba, luego navbar */
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Logo más grande y centrado */
+  .logo-img {
+    height: 70px;
+    margin: 0 auto;
+    display: block;
+    position: static;
+    transform: none;
+  }
+
+  /* Nombre de la página debajo del logo */
+  .logo-text {
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  /* Navbar en columna, un enlace por línea */
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.3rem 0;
+  }
+
+  nav a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 0.6rem 0;
+    margin-bottom: 0.3rem;
+  }
+
+  /* Idioma en la misma línea (más chico que nav) */
+  .language-switcher {
+    position: static;
+    margin: 0.5rem auto 0 auto;
+    display: inline-flex;
+    gap: 0.5rem;
+  }
+  .language-switcher a {
+    color: #fff; /* blanco */
+  }
+
+  /* Foto de perfil más chica */
+  .profile-card img {
+    width: 90px;
+    height: 90px;
+  }
+
+  /* Botones de perfiles más grandes y cómodos */
+  .profile-card a {
+    display: block;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.8rem 0;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  /* ===== Calendario: solo cambios para achicar espacio debajo ===== */
+  .calendar-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto;
+    margin: 0 auto 10px; /* margen inferior reducido */
+    height: auto;        /* evita que el contenedor reserve espacio extra */
+  }
+
+  .calendar-container table {
+    width: 100%;         /* tabla ocupa todo el contenedor */
+    font-size: 0.8rem;   /* reduce el tamaño del contenido */
+  }
+
+  .calendar-container th,
+  .calendar-container td {
+    padding: 4px 6px;    /* achica celdas para que todo quede más compacto */
+  }
+
+  .calendar-container thead th {
+    font-size: 0.85rem;  /* encabezados más pequeños */
   }
 }
