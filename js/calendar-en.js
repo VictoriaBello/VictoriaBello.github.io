@@ -1,39 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Events with ranges and lighter colors
     const events = [
-        {
-            startDate: '2025-09-15',
-            endDate: '2025-09-21',
-            title: 'FCI/IGP World Championship',
-            type: 'International',
-            color: '#FFDEB4' // light brown
-        },
-        {
-            startDate: '2025-09-28',
-            endDate: '2025-09-29',
-            title: 'POA - Regional Events',
-            type: 'National',
-            color: '#A8D5BA' // light green
-        },
-        {
-            startDate: '2025-09-28',
-            endDate: '2025-09-29',
-            title: 'RSV Global Latin America - Anniversary',
-            type: 'National',
-            color: '#C1E1C1' // softer green
-        },
-        {
-            startDate: '2025-10-03',
-            endDate: '2025-10-05',
-            title: 'RSV2000 World Championship',
-            type: 'International',
-            color: '#F5CBA7' // soft brown
-        }
+        { startDate: '2025-09-15', endDate: '2025-09-21', title: 'FCI/IGP World Championship', type: 'international', color: '#FFDEB4' },
+        { startDate: '2025-09-28', endDate: '2025-09-29', title: 'POA - Regionals', type: 'national', color: '#A8D5BA' },
+        { startDate: '2025-09-28', endDate: '2025-09-29', title: 'RSV Global Latin America - Anniversary', type: 'national', color: '#C1E1C1' },
+        { startDate: '2025-10-03', endDate: '2025-10-05', title: 'RSV2000 World Championship', type: 'international', color: '#F5CBA7' }
     ];
 
     const calendarContainer = document.getElementById('calendar-container');
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
     let currentDate = new Date();
     let currentYear = currentDate.getFullYear();
     let currentMonth = currentDate.getMonth();
@@ -43,19 +17,23 @@ document.addEventListener('DOMContentLoaded', () => {
         calendarContainer.style.display = 'flex';
         calendarContainer.style.flexDirection = 'column';
         calendarContainer.style.alignItems = 'center';
-        calendarContainer.style.marginTop = '40px';
+
+        // Margin top & bottom only for mobile
+        let isMobile = window.innerWidth <= 600;
+        calendarContainer.style.marginTop = isMobile ? '20px' : '40px';
+        calendarContainer.style.marginBottom = isMobile ? '10px' : '40px';
 
         // Calendar header
         const header = document.createElement('div');
         header.id = 'calendar-header';
-        header.style.width = '600px';
+        header.style.width = isMobile ? '100%' : '600px';
         header.style.display = 'flex';
         header.style.justifyContent = 'space-between';
         header.style.alignItems = 'center';
         header.style.margin = '0 0 10px';
         header.innerHTML = `
             <button id="prev-month">&lt;</button>
-            <h2 style="margin:0;">${monthNames[currentMonth]} ${currentYear}</h2>
+            <h2 style="margin:0; font-size:${isMobile ? '1rem' : '1.5rem'}">${monthNames[currentMonth]} ${currentYear}</h2>
             <button id="next-month">&gt;</button>
         `;
         calendarContainer.appendChild(header);
@@ -63,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Calendar table
         const table = document.createElement('table');
         table.id = 'calendar-table';
-        table.style.width = '600px';
+        table.style.width = isMobile ? '100%' : '600px';
         table.style.borderCollapse = 'collapse';
         table.style.textAlign = 'center';
 
@@ -75,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             th.textContent = day;
             th.style.padding = '5px';
             th.style.borderBottom = '1px solid #ccc';
+            th.style.fontSize = isMobile ? '0.7rem' : '0.9rem';
             headerRow.appendChild(th);
         });
         thead.appendChild(headerRow);
@@ -90,12 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const weekRow = document.createElement('tr');
             for(let j=0;j<7;j++){
                 const cell = document.createElement('td');
-                cell.style.padding = '8px';
-                cell.style.height = '40px';
+                cell.style.padding = isMobile ? '4px' : '8px';
+                cell.style.height = isMobile ? '30px' : '40px';
                 cell.style.border = '1px solid #eee';
-                if(i===0 && j<startingDay){
-                    cell.textContent = '';
-                } else if(date>monthLength){
+                if(i===0 && j<startingDay || date>monthLength){
                     cell.textContent = '';
                 } else {
                     const cellDate = new Date(currentYear,currentMonth,date);
@@ -106,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         const eventStart = new Date(event.startDate);
                         const eventEnd = new Date(event.endDate);
                         eventEnd.setDate(eventEnd.getDate() + 1);
-
                         if(cellDate >= eventStart && cellDate < eventEnd){
                             cell.style.backgroundColor = event.color;
                             cell.dataset.title = event.title;
@@ -123,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
                        cellDate.getDate()===today.getDate()){
                         cell.style.border = '2px solid #333';
                     }
-
                     date++;
                 }
                 weekRow.appendChild(cell);
@@ -143,19 +118,18 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip.style.background = 'rgba(0,0,0,0.75)';
             tooltip.style.color = '#fff';
             tooltip.style.borderRadius = '4px';
-            tooltip.style.fontSize = '0.9rem';
+            tooltip.style.fontSize = '0.8rem';
             tooltip.style.pointerEvents = 'none';
             tooltip.style.display = 'none';
             tooltip.style.zIndex = 1000;
             document.body.appendChild(tooltip);
         }
 
-        // Hover
         const cells = table.querySelectorAll('td');
         cells.forEach(cell=>{
             if(cell.dataset.title){
                 cell.addEventListener('mouseover',(e)=>{
-                    tooltip.innerHTML = `<strong>${cell.dataset.title}</strong><br>Type: ${cell.dataset.type}<br>${cell.dataset.start} → ${cell.dataset.end}`;
+                    tooltip.innerHTML = `<strong>${cell.dataset.title}</strong><br>${cell.dataset.type}<br>${cell.dataset.start} → ${cell.dataset.end}`;
                     tooltip.style.display='block';
                     tooltip.style.left = e.pageX + 10 + 'px';
                     tooltip.style.top = e.pageY + 10 + 'px';
@@ -184,4 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     renderCalendar();
+
+    // Re-render on window resize (mobile responsive)
+    window.addEventListener('resize', () => {
+        renderCalendar();
+    });
 });
